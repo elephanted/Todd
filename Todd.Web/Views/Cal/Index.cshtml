@@ -1,0 +1,51 @@
+﻿@model IEnumerable<Todd.Domain.Calendar>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.CalendarName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DateCreated)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.AspNetUser.UserName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CalendarType.CalendarTypeName)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.CalendarName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DateCreated)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.AspNetUser.UserName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CalendarType.CalendarTypeName)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.CalendarId }) |
+            @Html.ActionLink("Details", "Details", new { id=item.CalendarId }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.CalendarId })
+        </td>
+    </tr>
+}
+
+</table>

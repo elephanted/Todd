@@ -1,0 +1,50 @@
+﻿@model Todd.Domain.Calendar
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Calendar</h4>
+	<hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.CalendarName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CalendarName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DateCreated)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DateCreated)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.AspNetUser.UserName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AspNetUser.UserName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CalendarType.CalendarTypeName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CalendarType.CalendarTypeName)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.CalendarId }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

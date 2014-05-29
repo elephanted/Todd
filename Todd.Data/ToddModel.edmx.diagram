@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="f738b58ae1134dacbb30c52f88651637" Name="Diagram1">
+        <EntityTypeShape EntityType="ToddSimpleModel.AspNetRole" Width="1.5" PointX="0.75" PointY="7" IsExpanded="true" />
+        <EntityTypeShape EntityType="ToddSimpleModel.AspNetUserClaim" Width="1.5" PointX="5.25" PointY="5.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="ToddSimpleModel.AspNetUserLogin" Width="1.5" PointX="5.25" PointY="8.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="ToddSimpleModel.AspNetUser" Width="1.5" PointX="3" PointY="5.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="ToddSimpleModel.CalendarEventDate" Width="1.5" PointX="12.75" PointY="5.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="ToddSimpleModel.CalendarEvent" Width="1.5" PointX="10.5" PointY="6.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ToddSimpleModel.Calendar" Width="1.5" PointX="8.25" PointY="6.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="ToddSimpleModel.CalendarType" Width="1.5" PointX="6" PointY="10.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="ToddSimpleModel.CalendarUserRole" Width="1.5" PointX="6" PointY="3" IsExpanded="true" />
+        <EntityTypeShape EntityType="ToddSimpleModel.CalendarUsersInRole" Width="1.5" PointX="8.25" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ToddSimpleModel.RepeatType" Width="1.5" PointX="10.5" PointY="3.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="ToddSimpleModel.sysdiagram" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <AssociationConnector Association="ToddSimpleModel.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_User_Id" ManuallyRouted="false" />
+        <AssociationConnector Association="ToddSimpleModel.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" ManuallyRouted="false" />
+        <AssociationConnector Association="ToddSimpleModel.FK_Calendars_AspNetUsers" ManuallyRouted="false" />
+        <AssociationConnector Association="ToddSimpleModel.FK_CalendarUsersInRoles_AspNetUsers" ManuallyRouted="false" />
+        <AssociationConnector Association="ToddSimpleModel.FK_CalendarEventDates_CalendarEvents" ManuallyRouted="false" />
+        <AssociationConnector Association="ToddSimpleModel.FK_CalendarEvents_RepeatTypes" ManuallyRouted="false" />
+        <AssociationConnector Association="ToddSimpleModel.FK_CalendarEvents_Calendars" ManuallyRouted="false" />
+        <AssociationConnector Association="ToddSimpleModel.FK_Calendars_CalendarTypes" ManuallyRouted="false" />
+        <AssociationConnector Association="ToddSimpleModel.FK_CalendarUsersInRoles_CalendarUserRoles" ManuallyRouted="false" />
+        <AssociationConnector Association="ToddSimpleModel.AspNetUserRoles" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

@@ -1,0 +1,851 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="ToddSimpleModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="AspNetRoles">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
+        </EntityType>
+        <EntityType Name="AspNetUserClaims">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ClaimType" Type="nvarchar(max)" />
+          <Property Name="ClaimValue" Type="nvarchar(max)" />
+          <Property Name="User_Id" Type="nvarchar" MaxLength="128" Nullable="false" />
+        </EntityType>
+        <EntityType Name="AspNetUserLogins">
+          <Key>
+            <PropertyRef Name="UserId" />
+            <PropertyRef Name="LoginProvider" />
+            <PropertyRef Name="ProviderKey" />
+          </Key>
+          <Property Name="UserId" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="LoginProvider" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="ProviderKey" Type="nvarchar" MaxLength="128" Nullable="false" />
+        </EntityType>
+        <EntityType Name="AspNetUserRoles">
+          <Key>
+            <PropertyRef Name="UserId" />
+            <PropertyRef Name="RoleId" />
+          </Key>
+          <Property Name="UserId" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="RoleId" Type="nvarchar" MaxLength="128" Nullable="false" />
+        </EntityType>
+        <EntityType Name="AspNetUsers">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="UserName" Type="nvarchar(max)" />
+          <Property Name="PasswordHash" Type="nvarchar(max)" />
+          <Property Name="SecurityStamp" Type="nvarchar(max)" />
+          <Property Name="Discriminator" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="FirstName" Type="nvarchar" MaxLength="255" />
+          <Property Name="LastName" Type="nvarchar" MaxLength="255" />
+          <Property Name="Address" Type="nvarchar" MaxLength="255" />
+          <Property Name="City" Type="nvarchar" MaxLength="255" />
+          <Property Name="State" Type="nvarchar" MaxLength="255" />
+          <Property Name="ZIPCode" Type="nvarchar" MaxLength="255" />
+          <Property Name="CellPhone" Type="nvarchar" MaxLength="255" />
+          <Property Name="OtherPhone" Type="nvarchar" MaxLength="255" />
+          <Property Name="IncludeInDirectory" Type="bit" />
+          <Property Name="IsActive" Type="bit" />
+          <Property Name="FirstLogin" Type="datetime" />
+          <Property Name="LastLogin" Type="datetime" />
+        </EntityType>
+        <EntityType Name="CalendarEventDates">
+          <Key>
+            <PropertyRef Name="EventDateId" />
+          </Key>
+          <Property Name="EventDateId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CalendarEventId" Type="int" />
+          <Property Name="Repeats" Type="bit" />
+          <Property Name="RepeatTypeId" Type="int" />
+          <Property Name="Frequency" Type="int" />
+          <Property Name="Sunday" Type="bit" />
+          <Property Name="Monday" Type="bit" />
+          <Property Name="Tuesday" Type="bit" />
+          <Property Name="Wednesday" Type="bit" />
+          <Property Name="Thursday" Type="bit" />
+          <Property Name="Friday" Type="bit" />
+          <Property Name="Saturday" Type="bit" />
+          <Property Name="RepeatsOn" Type="nvarchar" MaxLength="255" />
+          <Property Name="StartDateTime" Type="datetime" />
+          <Property Name="EndDateTime" Type="datetime" />
+          <Property Name="StopOccurrences" Type="int" />
+          <Property Name="StopDate" Type="datetime" />
+        </EntityType>
+        <EntityType Name="CalendarEvents">
+          <Key>
+            <PropertyRef Name="CalendarEventId" />
+          </Key>
+          <Property Name="CalendarEventId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="EventName" Type="nvarchar" MaxLength="255" />
+          <Property Name="EventDescription" Type="nvarchar(max)" />
+          <Property Name="CalendarId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Calendars">
+          <Key>
+            <PropertyRef Name="CalendarId" />
+          </Key>
+          <Property Name="CalendarId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CalendarName" Type="nvarchar" MaxLength="255" />
+          <Property Name="CalendarTypeId" Type="int" />
+          <Property Name="DateCreated" Type="datetime" />
+          <Property Name="CreatedByUserId" Type="nvarchar" MaxLength="128" />
+        </EntityType>
+        <EntityType Name="CalendarTypes">
+          <Key>
+            <PropertyRef Name="CalendarTypeId" />
+          </Key>
+          <Property Name="CalendarTypeId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CalendarTypeName" Type="nvarchar" MaxLength="255" />
+          <Property Name="CalendarTypeDescription" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="CalendarUserRoles">
+          <Key>
+            <PropertyRef Name="CalendarUserRoleId" />
+          </Key>
+          <Property Name="CalendarUserRoleId" Type="int" Nullable="false" />
+          <Property Name="CalendarUserRoleName" Type="nvarchar" MaxLength="255" />
+        </EntityType>
+        <EntityType Name="CalendarUsersInRoles">
+          <Key>
+            <PropertyRef Name="CalendarId" />
+            <PropertyRef Name="UserId" />
+            <PropertyRef Name="CalendarUserRoleId" />
+          </Key>
+          <Property Name="CalendarId" Type="int" Nullable="false" />
+          <Property Name="UserId" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="CalendarUserRoleId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="RepeatTypes">
+          <Key>
+            <PropertyRef Name="RepeatTypeId" />
+          </Key>
+          <Property Name="RepeatTypeId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="RepeatTypeName" Type="nvarchar" MaxLength="255" />
+          <Property Name="RepeatTypeDescription" Type="nvarchar" MaxLength="255" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <Association Name="FK_CalendarEventDates_CalendarEvents">
+          <End Role="CalendarEvents" Type="Self.CalendarEvents" Multiplicity="0..1" />
+          <End Role="CalendarEventDates" Type="Self.CalendarEventDates" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CalendarEvents">
+              <PropertyRef Name="CalendarEventId" />
+            </Principal>
+            <Dependent Role="CalendarEventDates">
+              <PropertyRef Name="CalendarEventId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CalendarEvents_Calendars">
+          <End Role="Calendars" Type="Self.Calendars" Multiplicity="1" />
+          <End Role="CalendarEvents" Type="Self.CalendarEvents" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Calendars">
+              <PropertyRef Name="CalendarId" />
+            </Principal>
+            <Dependent Role="CalendarEvents">
+              <PropertyRef Name="CalendarId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CalendarEvents_RepeatTypes">
+          <End Role="RepeatTypes" Type="Self.RepeatTypes" Multiplicity="0..1" />
+          <End Role="CalendarEventDates" Type="Self.CalendarEventDates" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="RepeatTypes">
+              <PropertyRef Name="RepeatTypeId" />
+            </Principal>
+            <Dependent Role="CalendarEventDates">
+              <PropertyRef Name="RepeatTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Calendars_AspNetUsers">
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="0..1" />
+          <End Role="Calendars" Type="Self.Calendars" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Calendars">
+              <PropertyRef Name="CreatedByUserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Calendars_CalendarTypes">
+          <End Role="CalendarTypes" Type="Self.CalendarTypes" Multiplicity="0..1" />
+          <End Role="Calendars" Type="Self.Calendars" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CalendarTypes">
+              <PropertyRef Name="CalendarTypeId" />
+            </Principal>
+            <Dependent Role="Calendars">
+              <PropertyRef Name="CalendarTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CalendarUsersInRoles_AspNetUsers">
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1" />
+          <End Role="CalendarUsersInRoles" Type="Self.CalendarUsersInRoles" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="CalendarUsersInRoles">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CalendarUsersInRoles_CalendarUserRoles">
+          <End Role="CalendarUserRoles" Type="Self.CalendarUserRoles" Multiplicity="1" />
+          <End Role="CalendarUsersInRoles" Type="Self.CalendarUsersInRoles" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CalendarUserRoles">
+              <PropertyRef Name="CalendarUserRoleId" />
+            </Principal>
+            <Dependent Role="CalendarUsersInRoles">
+              <PropertyRef Name="CalendarUserRoleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_User_Id">
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="AspNetUserClaims" Type="Self.AspNetUserClaims" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUserClaims">
+              <PropertyRef Name="User_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="AspNetUserLogins" Type="Self.AspNetUserLogins" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUserLogins">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_AspNetUserRoles_dbo_AspNetRoles_RoleId">
+          <End Role="AspNetRoles" Type="Self.AspNetRoles" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="AspNetUserRoles" Type="Self.AspNetUserRoles" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetRoles">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUserRoles">
+              <PropertyRef Name="RoleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_AspNetUserRoles_dbo_AspNetUsers_UserId">
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="AspNetUserRoles" Type="Self.AspNetUserRoles" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUserRoles">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="ToddSimpleModelStoreContainer">
+          <EntitySet Name="AspNetRoles" EntityType="Self.AspNetRoles" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AspNetUserClaims" EntityType="Self.AspNetUserClaims" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AspNetUserLogins" EntityType="Self.AspNetUserLogins" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AspNetUserRoles" EntityType="Self.AspNetUserRoles" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AspNetUsers" EntityType="Self.AspNetUsers" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CalendarEventDates" EntityType="Self.CalendarEventDates" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CalendarEvents" EntityType="Self.CalendarEvents" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Calendars" EntityType="Self.Calendars" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CalendarTypes" EntityType="Self.CalendarTypes" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CalendarUserRoles" EntityType="Self.CalendarUserRoles" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CalendarUsersInRoles" EntityType="Self.CalendarUsersInRoles" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="RepeatTypes" EntityType="Self.RepeatTypes" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_CalendarEventDates_CalendarEvents" Association="Self.FK_CalendarEventDates_CalendarEvents">
+            <End Role="CalendarEvents" EntitySet="CalendarEvents" />
+            <End Role="CalendarEventDates" EntitySet="CalendarEventDates" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CalendarEvents_Calendars" Association="Self.FK_CalendarEvents_Calendars">
+            <End Role="Calendars" EntitySet="Calendars" />
+            <End Role="CalendarEvents" EntitySet="CalendarEvents" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CalendarEvents_RepeatTypes" Association="Self.FK_CalendarEvents_RepeatTypes">
+            <End Role="RepeatTypes" EntitySet="RepeatTypes" />
+            <End Role="CalendarEventDates" EntitySet="CalendarEventDates" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Calendars_AspNetUsers" Association="Self.FK_Calendars_AspNetUsers">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="Calendars" EntitySet="Calendars" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Calendars_CalendarTypes" Association="Self.FK_Calendars_CalendarTypes">
+            <End Role="CalendarTypes" EntitySet="CalendarTypes" />
+            <End Role="Calendars" EntitySet="Calendars" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CalendarUsersInRoles_AspNetUsers" Association="Self.FK_CalendarUsersInRoles_AspNetUsers">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="CalendarUsersInRoles" EntitySet="CalendarUsersInRoles" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CalendarUsersInRoles_CalendarUserRoles" Association="Self.FK_CalendarUsersInRoles_CalendarUserRoles">
+            <End Role="CalendarUserRoles" EntitySet="CalendarUserRoles" />
+            <End Role="CalendarUsersInRoles" EntitySet="CalendarUsersInRoles" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_User_Id" Association="Self.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_User_Id">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="AspNetUserClaims" EntitySet="AspNetUserClaims" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="AspNetUserLogins" EntitySet="AspNetUserLogins" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_AspNetUserRoles_dbo_AspNetRoles_RoleId" Association="Self.FK_dbo_AspNetUserRoles_dbo_AspNetRoles_RoleId">
+            <End Role="AspNetRoles" EntitySet="AspNetRoles" />
+            <End Role="AspNetUserRoles" EntitySet="AspNetUserRoles" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_AspNetUserRoles_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserRoles_dbo_AspNetUsers_UserId">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="AspNetUserRoles" EntitySet="AspNetUserRoles" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="ToddSimpleModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="AspNetRole">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="AspNetUsers" Relationship="Self.AspNetUserRoles" FromRole="AspNetRoles" ToRole="AspNetUsers" />
+        </EntityType>
+        <EntityType Name="AspNetUserClaim">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ClaimType" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ClaimValue" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="User_Id" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="AspNetUser" Relationship="Self.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_User_Id" FromRole="AspNetUserClaims" ToRole="AspNetUsers" />
+        </EntityType>
+        <EntityType Name="AspNetUserLogin">
+          <Key>
+            <PropertyRef Name="UserId" />
+            <PropertyRef Name="LoginProvider" />
+            <PropertyRef Name="ProviderKey" />
+          </Key>
+          <Property Name="UserId" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="LoginProvider" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ProviderKey" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="AspNetUser" Relationship="Self.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" FromRole="AspNetUserLogins" ToRole="AspNetUsers" />
+        </EntityType>
+        <EntityType Name="AspNetUser">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="UserName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="PasswordHash" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="SecurityStamp" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Discriminator" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="FirstName" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="LastName" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Address" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="City" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="State" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="ZIPCode" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="CellPhone" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="OtherPhone" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="IncludeInDirectory" Type="Boolean" />
+          <Property Name="IsActive" Type="Boolean" />
+          <Property Name="FirstLogin" Type="DateTime" Precision="3" />
+          <Property Name="LastLogin" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="AspNetUserClaims" Relationship="Self.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_User_Id" FromRole="AspNetUsers" ToRole="AspNetUserClaims" />
+          <NavigationProperty Name="AspNetUserLogins" Relationship="Self.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" FromRole="AspNetUsers" ToRole="AspNetUserLogins" />
+          <NavigationProperty Name="Calendars" Relationship="Self.FK_Calendars_AspNetUsers" FromRole="AspNetUsers" ToRole="Calendars" />
+          <NavigationProperty Name="CalendarUsersInRoles" Relationship="Self.FK_CalendarUsersInRoles_AspNetUsers" FromRole="AspNetUsers" ToRole="CalendarUsersInRoles" />
+          <NavigationProperty Name="AspNetRoles" Relationship="Self.AspNetUserRoles" FromRole="AspNetUsers" ToRole="AspNetRoles" />
+        </EntityType>
+        <EntityType Name="CalendarEventDate">
+          <Key>
+            <PropertyRef Name="EventDateId" />
+          </Key>
+          <Property Name="EventDateId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CalendarEventId" Type="Int32" />
+          <Property Name="Repeats" Type="Boolean" />
+          <Property Name="RepeatTypeId" Type="Int32" />
+          <Property Name="Frequency" Type="Int32" />
+          <Property Name="Sunday" Type="Boolean" />
+          <Property Name="Monday" Type="Boolean" />
+          <Property Name="Tuesday" Type="Boolean" />
+          <Property Name="Wednesday" Type="Boolean" />
+          <Property Name="Thursday" Type="Boolean" />
+          <Property Name="Friday" Type="Boolean" />
+          <Property Name="Saturday" Type="Boolean" />
+          <Property Name="RepeatsOn" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="StartDateTime" Type="DateTime" Precision="3" />
+          <Property Name="EndDateTime" Type="DateTime" Precision="3" />
+          <Property Name="StopOccurrences" Type="Int32" />
+          <Property Name="StopDate" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="CalendarEvent" Relationship="Self.FK_CalendarEventDates_CalendarEvents" FromRole="CalendarEventDates" ToRole="CalendarEvents" />
+          <NavigationProperty Name="RepeatType" Relationship="Self.FK_CalendarEvents_RepeatTypes" FromRole="CalendarEventDates" ToRole="RepeatTypes" />
+        </EntityType>
+        <EntityType Name="CalendarEvent">
+          <Key>
+            <PropertyRef Name="CalendarEventId" />
+          </Key>
+          <Property Name="CalendarEventId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="EventName" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="EventDescription" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="CalendarId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="CalendarEventDates" Relationship="Self.FK_CalendarEventDates_CalendarEvents" FromRole="CalendarEvents" ToRole="CalendarEventDates" />
+          <NavigationProperty Name="Calendar" Relationship="Self.FK_CalendarEvents_Calendars" FromRole="CalendarEvents" ToRole="Calendars" />
+        </EntityType>
+        <EntityType Name="Calendar">
+          <Key>
+            <PropertyRef Name="CalendarId" />
+          </Key>
+          <Property Name="CalendarId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CalendarName" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="CalendarTypeId" Type="Int32" />
+          <Property Name="DateCreated" Type="DateTime" Precision="3" />
+          <Property Name="CreatedByUserId" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="AspNetUser" Relationship="Self.FK_Calendars_AspNetUsers" FromRole="Calendars" ToRole="AspNetUsers" />
+          <NavigationProperty Name="CalendarEvents" Relationship="Self.FK_CalendarEvents_Calendars" FromRole="Calendars" ToRole="CalendarEvents" />
+          <NavigationProperty Name="CalendarType" Relationship="Self.FK_Calendars_CalendarTypes" FromRole="Calendars" ToRole="CalendarTypes" />
+        </EntityType>
+        <EntityType Name="CalendarType">
+          <Key>
+            <PropertyRef Name="CalendarTypeId" />
+          </Key>
+          <Property Name="CalendarTypeId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CalendarTypeName" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="CalendarTypeDescription" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Calendars" Relationship="Self.FK_Calendars_CalendarTypes" FromRole="CalendarTypes" ToRole="Calendars" />
+        </EntityType>
+        <EntityType Name="CalendarUserRole">
+          <Key>
+            <PropertyRef Name="CalendarUserRoleId" />
+          </Key>
+          <Property Name="CalendarUserRoleId" Type="Int32" Nullable="false" />
+          <Property Name="CalendarUserRoleName" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="CalendarUsersInRoles" Relationship="Self.FK_CalendarUsersInRoles_CalendarUserRoles" FromRole="CalendarUserRoles" ToRole="CalendarUsersInRoles" />
+        </EntityType>
+        <EntityType Name="CalendarUsersInRole">
+          <Key>
+            <PropertyRef Name="CalendarId" />
+            <PropertyRef Name="UserId" />
+            <PropertyRef Name="CalendarUserRoleId" />
+          </Key>
+          <Property Name="CalendarId" Type="Int32" Nullable="false" />
+          <Property Name="UserId" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="CalendarUserRoleId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="AspNetUser" Relationship="Self.FK_CalendarUsersInRoles_AspNetUsers" FromRole="CalendarUsersInRoles" ToRole="AspNetUsers" />
+          <NavigationProperty Name="CalendarUserRole" Relationship="Self.FK_CalendarUsersInRoles_CalendarUserRoles" FromRole="CalendarUsersInRoles" ToRole="CalendarUserRoles" />
+        </EntityType>
+        <EntityType Name="RepeatType">
+          <Key>
+            <PropertyRef Name="RepeatTypeId" />
+          </Key>
+          <Property Name="RepeatTypeId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="RepeatTypeName" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="RepeatTypeDescription" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="CalendarEventDates" Relationship="Self.FK_CalendarEvents_RepeatTypes" FromRole="RepeatTypes" ToRole="CalendarEventDates" />
+        </EntityType>
+        <EntityType Name="sysdiagram">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <Association Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_User_Id">
+          <End Role="AspNetUsers" Type="Self.AspNetUser" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="AspNetUserClaims" Type="Self.AspNetUserClaim" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUserClaims">
+              <PropertyRef Name="User_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
+          <End Role="AspNetUsers" Type="Self.AspNetUser" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="AspNetUserLogins" Type="Self.AspNetUserLogin" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUserLogins">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Calendars_AspNetUsers">
+          <End Role="AspNetUsers" Type="Self.AspNetUser" Multiplicity="0..1" />
+          <End Role="Calendars" Type="Self.Calendar" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Calendars">
+              <PropertyRef Name="CreatedByUserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CalendarUsersInRoles_AspNetUsers">
+          <End Role="AspNetUsers" Type="Self.AspNetUser" Multiplicity="1" />
+          <End Role="CalendarUsersInRoles" Type="Self.CalendarUsersInRole" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="CalendarUsersInRoles">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CalendarEventDates_CalendarEvents">
+          <End Role="CalendarEvents" Type="Self.CalendarEvent" Multiplicity="0..1" />
+          <End Role="CalendarEventDates" Type="Self.CalendarEventDate" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CalendarEvents">
+              <PropertyRef Name="CalendarEventId" />
+            </Principal>
+            <Dependent Role="CalendarEventDates">
+              <PropertyRef Name="CalendarEventId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CalendarEvents_RepeatTypes">
+          <End Role="RepeatTypes" Type="Self.RepeatType" Multiplicity="0..1" />
+          <End Role="CalendarEventDates" Type="Self.CalendarEventDate" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="RepeatTypes">
+              <PropertyRef Name="RepeatTypeId" />
+            </Principal>
+            <Dependent Role="CalendarEventDates">
+              <PropertyRef Name="RepeatTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CalendarEvents_Calendars">
+          <End Role="Calendars" Type="Self.Calendar" Multiplicity="1" />
+          <End Role="CalendarEvents" Type="Self.CalendarEvent" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Calendars">
+              <PropertyRef Name="CalendarId" />
+            </Principal>
+            <Dependent Role="CalendarEvents">
+              <PropertyRef Name="CalendarId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Calendars_CalendarTypes">
+          <End Role="CalendarTypes" Type="Self.CalendarType" Multiplicity="0..1" />
+          <End Role="Calendars" Type="Self.Calendar" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CalendarTypes">
+              <PropertyRef Name="CalendarTypeId" />
+            </Principal>
+            <Dependent Role="Calendars">
+              <PropertyRef Name="CalendarTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CalendarUsersInRoles_CalendarUserRoles">
+          <End Role="CalendarUserRoles" Type="Self.CalendarUserRole" Multiplicity="1" />
+          <End Role="CalendarUsersInRoles" Type="Self.CalendarUsersInRole" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CalendarUserRoles">
+              <PropertyRef Name="CalendarUserRoleId" />
+            </Principal>
+            <Dependent Role="CalendarUsersInRoles">
+              <PropertyRef Name="CalendarUserRoleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="AspNetUserRoles">
+          <End Role="AspNetRoles" Type="Self.AspNetRole" Multiplicity="*" />
+          <End Role="AspNetUsers" Type="Self.AspNetUser" Multiplicity="*" />
+        </Association>
+        <EntityContainer Name="ToddEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="AspNetRoles" EntityType="Self.AspNetRole" />
+          <EntitySet Name="AspNetUserClaims" EntityType="Self.AspNetUserClaim" />
+          <EntitySet Name="AspNetUserLogins" EntityType="Self.AspNetUserLogin" />
+          <EntitySet Name="AspNetUsers" EntityType="Self.AspNetUser" />
+          <EntitySet Name="CalendarEventDates" EntityType="Self.CalendarEventDate" />
+          <EntitySet Name="CalendarEvents" EntityType="Self.CalendarEvent" />
+          <EntitySet Name="Calendars" EntityType="Self.Calendar" />
+          <EntitySet Name="CalendarTypes" EntityType="Self.CalendarType" />
+          <EntitySet Name="CalendarUserRoles" EntityType="Self.CalendarUserRole" />
+          <EntitySet Name="CalendarUsersInRoles" EntityType="Self.CalendarUsersInRole" />
+          <EntitySet Name="RepeatTypes" EntityType="Self.RepeatType" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
+          <AssociationSet Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_User_Id" Association="Self.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_User_Id">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="AspNetUserClaims" EntitySet="AspNetUserClaims" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="AspNetUserLogins" EntitySet="AspNetUserLogins" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Calendars_AspNetUsers" Association="Self.FK_Calendars_AspNetUsers">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="Calendars" EntitySet="Calendars" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CalendarUsersInRoles_AspNetUsers" Association="Self.FK_CalendarUsersInRoles_AspNetUsers">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="CalendarUsersInRoles" EntitySet="CalendarUsersInRoles" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CalendarEventDates_CalendarEvents" Association="Self.FK_CalendarEventDates_CalendarEvents">
+            <End Role="CalendarEvents" EntitySet="CalendarEvents" />
+            <End Role="CalendarEventDates" EntitySet="CalendarEventDates" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CalendarEvents_RepeatTypes" Association="Self.FK_CalendarEvents_RepeatTypes">
+            <End Role="RepeatTypes" EntitySet="RepeatTypes" />
+            <End Role="CalendarEventDates" EntitySet="CalendarEventDates" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CalendarEvents_Calendars" Association="Self.FK_CalendarEvents_Calendars">
+            <End Role="Calendars" EntitySet="Calendars" />
+            <End Role="CalendarEvents" EntitySet="CalendarEvents" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Calendars_CalendarTypes" Association="Self.FK_Calendars_CalendarTypes">
+            <End Role="CalendarTypes" EntitySet="CalendarTypes" />
+            <End Role="Calendars" EntitySet="Calendars" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CalendarUsersInRoles_CalendarUserRoles" Association="Self.FK_CalendarUsersInRoles_CalendarUserRoles">
+            <End Role="CalendarUserRoles" EntitySet="CalendarUserRoles" />
+            <End Role="CalendarUsersInRoles" EntitySet="CalendarUsersInRoles" />
+          </AssociationSet>
+          <AssociationSet Name="AspNetUserRoles" Association="Self.AspNetUserRoles">
+            <End Role="AspNetRoles" EntitySet="AspNetRoles" />
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="ToddSimpleModelStoreContainer" CdmEntityContainer="ToddEntities">
+          <EntitySetMapping Name="AspNetRoles">
+            <EntityTypeMapping TypeName="ToddSimpleModel.AspNetRole">
+              <MappingFragment StoreEntitySet="AspNetRoles">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AspNetUserClaims">
+            <EntityTypeMapping TypeName="ToddSimpleModel.AspNetUserClaim">
+              <MappingFragment StoreEntitySet="AspNetUserClaims">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="ClaimType" ColumnName="ClaimType" />
+                <ScalarProperty Name="ClaimValue" ColumnName="ClaimValue" />
+                <ScalarProperty Name="User_Id" ColumnName="User_Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AspNetUserLogins">
+            <EntityTypeMapping TypeName="ToddSimpleModel.AspNetUserLogin">
+              <MappingFragment StoreEntitySet="AspNetUserLogins">
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="LoginProvider" ColumnName="LoginProvider" />
+                <ScalarProperty Name="ProviderKey" ColumnName="ProviderKey" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AspNetUsers">
+            <EntityTypeMapping TypeName="ToddSimpleModel.AspNetUser">
+              <MappingFragment StoreEntitySet="AspNetUsers">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="PasswordHash" ColumnName="PasswordHash" />
+                <ScalarProperty Name="SecurityStamp" ColumnName="SecurityStamp" />
+                <ScalarProperty Name="Discriminator" ColumnName="Discriminator" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="City" ColumnName="City" />
+                <ScalarProperty Name="State" ColumnName="State" />
+                <ScalarProperty Name="ZIPCode" ColumnName="ZIPCode" />
+                <ScalarProperty Name="CellPhone" ColumnName="CellPhone" />
+                <ScalarProperty Name="OtherPhone" ColumnName="OtherPhone" />
+                <ScalarProperty Name="IncludeInDirectory" ColumnName="IncludeInDirectory" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="FirstLogin" ColumnName="FirstLogin" />
+                <ScalarProperty Name="LastLogin" ColumnName="LastLogin" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CalendarEventDates">
+            <EntityTypeMapping TypeName="ToddSimpleModel.CalendarEventDate">
+              <MappingFragment StoreEntitySet="CalendarEventDates">
+                <ScalarProperty Name="EventDateId" ColumnName="EventDateId" />
+                <ScalarProperty Name="CalendarEventId" ColumnName="CalendarEventId" />
+                <ScalarProperty Name="Repeats" ColumnName="Repeats" />
+                <ScalarProperty Name="RepeatTypeId" ColumnName="RepeatTypeId" />
+                <ScalarProperty Name="Frequency" ColumnName="Frequency" />
+                <ScalarProperty Name="Sunday" ColumnName="Sunday" />
+                <ScalarProperty Name="Monday" ColumnName="Monday" />
+                <ScalarProperty Name="Tuesday" ColumnName="Tuesday" />
+                <ScalarProperty Name="Wednesday" ColumnName="Wednesday" />
+                <ScalarProperty Name="Thursday" ColumnName="Thursday" />
+                <ScalarProperty Name="Friday" ColumnName="Friday" />
+                <ScalarProperty Name="Saturday" ColumnName="Saturday" />
+                <ScalarProperty Name="RepeatsOn" ColumnName="RepeatsOn" />
+                <ScalarProperty Name="StartDateTime" ColumnName="StartDateTime" />
+                <ScalarProperty Name="EndDateTime" ColumnName="EndDateTime" />
+                <ScalarProperty Name="StopOccurrences" ColumnName="StopOccurrences" />
+                <ScalarProperty Name="StopDate" ColumnName="StopDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CalendarEvents">
+            <EntityTypeMapping TypeName="ToddSimpleModel.CalendarEvent">
+              <MappingFragment StoreEntitySet="CalendarEvents">
+                <ScalarProperty Name="CalendarEventId" ColumnName="CalendarEventId" />
+                <ScalarProperty Name="EventName" ColumnName="EventName" />
+                <ScalarProperty Name="EventDescription" ColumnName="EventDescription" />
+                <ScalarProperty Name="CalendarId" ColumnName="CalendarId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Calendars">
+            <EntityTypeMapping TypeName="ToddSimpleModel.Calendar">
+              <MappingFragment StoreEntitySet="Calendars">
+                <ScalarProperty Name="CalendarId" ColumnName="CalendarId" />
+                <ScalarProperty Name="CalendarName" ColumnName="CalendarName" />
+                <ScalarProperty Name="CalendarTypeId" ColumnName="CalendarTypeId" />
+                <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
+                <ScalarProperty Name="CreatedByUserId" ColumnName="CreatedByUserId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CalendarTypes">
+            <EntityTypeMapping TypeName="ToddSimpleModel.CalendarType">
+              <MappingFragment StoreEntitySet="CalendarTypes">
+                <ScalarProperty Name="CalendarTypeId" ColumnName="CalendarTypeId" />
+                <ScalarProperty Name="CalendarTypeName" ColumnName="CalendarTypeName" />
+                <ScalarProperty Name="CalendarTypeDescription" ColumnName="CalendarTypeDescription" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CalendarUserRoles">
+            <EntityTypeMapping TypeName="ToddSimpleModel.CalendarUserRole">
+              <MappingFragment StoreEntitySet="CalendarUserRoles">
+                <ScalarProperty Name="CalendarUserRoleId" ColumnName="CalendarUserRoleId" />
+                <ScalarProperty Name="CalendarUserRoleName" ColumnName="CalendarUserRoleName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CalendarUsersInRoles">
+            <EntityTypeMapping TypeName="ToddSimpleModel.CalendarUsersInRole">
+              <MappingFragment StoreEntitySet="CalendarUsersInRoles">
+                <ScalarProperty Name="CalendarId" ColumnName="CalendarId" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="CalendarUserRoleId" ColumnName="CalendarUserRoleId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="RepeatTypes">
+            <EntityTypeMapping TypeName="ToddSimpleModel.RepeatType">
+              <MappingFragment StoreEntitySet="RepeatTypes">
+                <ScalarProperty Name="RepeatTypeId" ColumnName="RepeatTypeId" />
+                <ScalarProperty Name="RepeatTypeName" ColumnName="RepeatTypeName" />
+                <ScalarProperty Name="RepeatTypeDescription" ColumnName="RepeatTypeDescription" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="ToddSimpleModel.sysdiagram">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <AssociationSetMapping Name="AspNetUserRoles" TypeName="ToddSimpleModel.AspNetUserRoles" StoreEntitySet="AspNetUserRoles">
+            <EndProperty Name="AspNetRoles">
+              <ScalarProperty Name="Id" ColumnName="RoleId" />
+            </EndProperty>
+            <EndProperty Name="AspNetUsers">
+              <ScalarProperty Name="Id" ColumnName="UserId" />
+            </EndProperty>
+          </AssociationSetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
